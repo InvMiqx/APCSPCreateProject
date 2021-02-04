@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <input type="password" id="pass" />
+    <button onclick="changeVisibility()">Change Visibility</button>
+    <div>
+      Password Strength: <span id="result"></span>
+    </div>
+
+    <script>
+
+      document.getElementById("pass").addEventListener("keyup", function(){
+        let string = document.getElementById("pass").value;
+        let array = string.split("");
+        // console.log(array);
+        let result = checkPasswordStrength(array);
+
+        document.getElementById("result").innerHTML = result;
+
+      });
+
+      function checkPasswordStrength(text){
+        // console.log(text);
+
+        let isOverEightCharacters = (text.length >= 8); //password minimum
+
+        let hasUpperCase = false;
+        let hasLowerCase = false;
+        let hasNumber = false;
+        let hasOtherCharacter = false;
+        let isOverFifteenCharacters = (text.length >= 15);
+
+        text.forEach(char=>{
+
+          asciiValue = char.charCodeAt(0);
+
+          if(asciiValue <= 90 && asciiValue >= 65) hasUpperCase = true;
+          else if(asciiValue <= 122 && asciiValue >= 97) hasLowerCase = true;
+          else if(asciiValue <= 57 && asciiValue >= 48) hasNumber = true;
+          else hasOtherCharacter = true;
+
+        });
+
+        if(!isOverEightCharacters) return "Too short";
+
+        let score = 0;
+        if(hasUpperCase) score++;
+        if(hasLowerCase) score++;
+        if(hasNumber) score++;
+        if(hasOtherCharacter) score++;
+        if(isOverFifteenCharacters) score++;
+
+        switch(score){
+          case 0: return "Weak";
+          case 1: return "Weak";
+          case 2: return "Weak";
+          case 3: return "Moderate";
+          case 4: return "Strong";
+          case 5: return "Unbreakable";
+        }
+
+        return "error";
+
+
+      }
+
+      function changeVisibility(){
+        let visibilityState = document.getElementById("pass").type; //
+
+        if(visibilityState == "password"){
+          document.getElementById("pass").type = "text";
+        }
+        else{
+          document.getElementById("pass").type = "password";
+        }
+      }
+
+    </script>
+
+
+  </body>
+</html>
