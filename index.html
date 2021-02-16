@@ -15,7 +15,6 @@
       document.getElementById("pass").addEventListener("keyup", function(){
         let string = document.getElementById("pass").value;
         let array = string.split("");
-        // console.log(array);
         let result = checkPasswordStrength(array);
 
         document.getElementById("result").innerHTML = result;
@@ -23,7 +22,6 @@
       });
 
       function checkPasswordStrength(text){
-        // console.log(text);
 
         let isOverEightCharacters = (text.length >= 8); //password minimum
 
@@ -32,6 +30,8 @@
         let hasNumber = false;
         let hasOtherCharacter = false;
         let isOverFifteenCharacters = (text.length >= 15);
+
+        if(!isOverEightCharacters) return "Too short";
 
         text.forEach(char=>{
 
@@ -44,8 +44,6 @@
 
         });
 
-        if(!isOverEightCharacters) return "Too short";
-
         let score = 0;
         if(hasUpperCase) score++;
         if(hasLowerCase) score++;
@@ -54,8 +52,8 @@
         if(isOverFifteenCharacters) score++;
 
         switch(score){
-          case 0: return "Weak";
-          case 1: return "Weak";
+          case 0: return "Paper";
+          case 1: return "Very Weak";
           case 2: return "Weak";
           case 3: return "Moderate";
           case 4: return "Strong";
