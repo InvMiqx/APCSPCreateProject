@@ -13,9 +13,9 @@
     <script>
 
       document.getElementById("pass").addEventListener("keyup", function(){
-        let string = document.getElementById("pass").value;
-        let array = string.split("");
-        let result = checkPasswordStrength(array);
+        let input = document.getElementById("pass").value;
+        let charArray = input.split("");
+        let result = checkPasswordStrength(charArray);
 
         document.getElementById("result").innerHTML = result;
 
