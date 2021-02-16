@@ -21,19 +21,19 @@
 
       });
 
-      function checkPasswordStrength(text){
+      function checkPasswordStrength(charArray){
 
-        let isOverEightCharacters = (text.length >= 8); //password minimum
+        let isOverEightCharacters = (charArray.length >= 8); //password minimum
 
         let hasUpperCase = false;
         let hasLowerCase = false;
         let hasNumber = false;
         let hasOtherCharacter = false;
-        let isOverFifteenCharacters = (text.length >= 15);
+        let isOverFifteenCharacters = (charArray.length >= 15);
 
         if(!isOverEightCharacters) return "Too short";
 
-        text.forEach(char=>{
+        charArray.forEach(char=>{
 
           asciiValue = char.charCodeAt(0);
 
